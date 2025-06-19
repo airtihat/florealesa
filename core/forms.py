@@ -4,12 +4,26 @@ from django.contrib.auth.models import User
 
 
 class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(required=True, label='البريد الإلكتروني')
-    phone = forms.CharField(label='رقم الجوال', max_length=15, required=True)
+    email = forms.EmailField(
+        required=True,
+        label='البريد الإلكتروني',
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
+    )
+    phone = forms.CharField(
+        required=True,
+        label='رقم الجوال',
+        max_length=15,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '05xxxxxxxx'})
+    )
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")  # phone غير موجود في model User
+        fields = ("username", "email", "password1", "password2")
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
+        }
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -26,9 +40,9 @@ class CustomUserCreationForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data["email"]
+        # ملاحظة: إذا أردت حفظ الهاتف، يجب أن يكون في نموذج مستخدم مخصص
         if commit:
             user.save()
-        # يمكنك هنا حفظ رقم الجوال في نموذج مخصص أو جدول آخر إذا لزم
         return user
 
 
@@ -36,9 +50,9 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label='اسم المستخدم',
         max_length=150,
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'اسم المستخدم'})
     )
     password = forms.CharField(
         label='كلمة المرور',
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '••••••••'})
     )

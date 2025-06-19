@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <title>تسجيل الدخول</title>
-  <style>
-    body { font-family: 'Cairo', sans-serif; background: #f3f3f3; padding: 0; margin: 0; }
-    main { max-width: 400px; margin: 5rem auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-    h2 { text-align: center; color: #d81b60; }
-    input { width: 100%; padding: 10px; margin-top: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc; }
-    button { width: 100%; padding: 10px; background: #880e4f; color: white; border: none; border-radius: 5px; cursor: pointer; }
-    button:hover { background: #ad1457; }
-  </style>
+    <meta charset="UTF-8">
+    <title>تسجيل الدخول</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <main>
-    <h2>تسجيل الدخول</h2>
-    <form method="post">
-      {% csrf_token %}
-      <input type="text" name="username" placeholder="اسم المستخدم" required />
-      <input type="password" name="password" placeholder="كلمة المرور" required />
-      <button type="submit">دخول</button>
-    </form>
-  </main>
+<body class="bg-gray-100 font-sans">
+
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">تسجيل الدخول</h2>
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                
+                <div class="mb-4">
+                    <label for="username" class="block mb-1 font-medium">اسم المستخدم</label>
+                    {{ form.username|add_class:"w-full p-2 border rounded" }}
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="block mb-1 font-medium">كلمة المرور</label>
+                    {{ form.password|add_class:"w-full p-2 border rounded" }}
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+                    دخول
+                </button>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -1,0 +1,22 @@
+<header class="bg-pink-700 text-white px-4 py-3 flex justify-between items-center">
+    <div class="text-xl font-bold">
+        🌸 فلوراليزا - متجر الزهور والهدايا
+    </div>
+
+    <div class="space-x-2 rtl:space-x-reverse">
+        {% if user.is_authenticated %}
+            <span class="font-medium">مرحباً، {{ user.username }}</span>
+            <a href="{% url 'logout' %}" class="bg-white text-pink-700 px-3 py-1 rounded hover:bg-gray-100">
+                تسجيل الخروج
+            </a>
+        {% else %}
+            <a href="{% url 'login' %}" class="bg-white text-pink-700 px-3 py-1 rounded hover:bg-gray-100">
+                تسجيل الدخول
+            </a>
+            <a href="{% url 'signup' %}" class="bg-white text-pink-700 px-3 py-1 rounded hover:bg-gray-100">
+                إنشاء حساب
+            </a>
+        {% endif %}
+    </div>
+</header>
+<!-- Compare this snippet from templates/core/base.html: -->

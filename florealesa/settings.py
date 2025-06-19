@@ -7,13 +7,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ⚠️ لا تستخدم هذا المفتاح في بيئة الإنتاج!
 SECRET_KEY = 'django-insecure-%p5hua%pco-0#0gu#a=ngsb4giig-392)2eo3@b_omkpl%ptrm'
 
-# تشغيل التصحيح في بيئة التطوير فقط
+# وضع التصحيح (يُفعل فقط أثناء التطوير)
 DEBUG = True
 
+# المجالات المسموح بها (تحديثها عند النشر)
 ALLOWED_HOSTS = []
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
+    # تطبيقات Django الافتراضية
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -27,7 +29,7 @@ INSTALLED_APPS = [
     'orders',
 ]
 
-# إعدادات الـ Middleware
+# الطبقات الوسيطة (Middleware)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -38,14 +40,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# إعدادات روابط المشروع
+# رابط التوجيه الأساسي
 ROOT_URLCONF = 'florealesa.urls'
 
-# إعدادات القوالب
+# إعدادات القوالب (Templates)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # مسار القوالب العام
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # مجلد القوالب العام
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -61,7 +63,7 @@ TEMPLATES = [
 # إعدادات WSGI
 WSGI_APPLICATION = 'florealesa.wsgi.application'
 
-# إعدادات قاعدة البيانات (SQLite للتجربة)
+# إعداد قاعدة البيانات (SQLite لتجربة محلية)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -69,7 +71,7 @@ DATABASES = {
     }
 }
 
-# تحقق كلمات المرور
+# التحقق من كلمات المرور
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -84,18 +86,17 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# الملفات الثابتة
+# إعدادات الملفات الثابتة (Static)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# نوع المفتاح الأساسي الافتراضي
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# إعدادات الوسائط (صور ومنتجات)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# التوجيه بعد تسجيل الدخول والخروج
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-
-
-
+# نوع الحقل الافتراضي
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

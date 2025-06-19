@@ -1,38 +1,44 @@
-
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from .forms import CustomUserCreationForm, LoginForm
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 
-# عرض صفحة تسجيل حساب جديد
-def register(request):
+from .forms import CustomUserCreationForm, LoginForm  # استخدم النماذج المخصصة
+
+
+# ✅ الصفحة الرئيسية - تتطلب تسجيل دخول
+@login_required
+def index(request):
+    return render(request, 'core/home.html')
+
+
+# ✅ عرض صفحة إنشاء حساب
+def signup_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            # إذا كنت تستخدم نموذج مستخدم مخصص يحتوي على phone، فيجب التحقق من وجوده
-            user.save()
-            return redirect('login')  # إعادة التوجيه إلى صفحة تسجيل الدخول
+            user = form.save()
+            login(request, user)  # تسجيل دخول تلقائي بعد التسجيل
+            return redirect('index')
     else:
         form = CustomUserCreationForm()
     
-    return render(request, 'core/register.html', {'form': form})
+    return render(request, 'core/signup.html', {'form': form})
 
 
-# عرض صفحة تسجيل الدخول
-def user_login(request):
+# ✅ عرض صفحة تسجيل الدخول
+def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('index')  # يمكنك تغييره حسب وجهتك بعد الدخول
+            return redirect('index')
     else:
         form = LoginForm()
     
     return render(request, 'core/login.html', {'form': form})
-from django.http import HttpResponse
 
-from django.shortcuts import render
 
-def index(request):
-    return render(request, 'home.html')
+# ✅ عرض صفحة اختبار
+def test_view(request):
+    return render(request, 'core/test.html')
