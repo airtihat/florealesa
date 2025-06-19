@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>إنشاء حساب</title>
+  <style>
+    body { font-family: 'Cairo', sans-serif; background: #fef6f9; padding: 0; margin: 0; }
+    main { max-width: 400px; margin: 5rem auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    h2 { text-align: center; color: #d81b60; }
+    input { width: 100%; padding: 10px; margin-top: 10px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc; }
+    button { width: 100%; padding: 10px; background: #880e4f; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #ad1457; }
+  </style>
+</head>
+<body>
+  <main>
+    <h2>إنشاء حساب جديد</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="اسم المستخدم" required />
+      <input type="email" name="email" placeholder="البريد الإلكتروني" required />
+      <input type="password" name="password1" placeholder="كلمة المرور" required />
+      <input type="password" name="password2" placeholder="تأكيد كلمة المرور" required />
+      <button type="submit">تسجيل</button>
+    </form>
+  </main>
+</body>
+</html>

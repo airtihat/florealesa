@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>التصنيفات | فلوراليزا</title>
+  <style>
+    body { font-family: 'Cairo', sans-serif; margin: 0; background: #f4f4f4; color: #333; }
+    header, footer { background: #ad1457; color: white; padding: 1rem; text-align: center; }
+    main { padding: 2rem; }
+    .category { background: white; padding: 1rem; margin-bottom: 1rem; border-radius: 6px; cursor: pointer; box-shadow: 0 0 5px rgba(0,0,0,0.05); }
+    .category:hover { background: #fce4ec; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>تصنيفات المنتجات</h1>
+  </header>
+
+  <main>
+    <div class="category" onclick="goToCategory('الزهور')">🌷 الزهور</div>
+    <div class="category" onclick="goToCategory('الشوكولاتة')">🍫 الشوكولاتة</div>
+    <div class="category" onclick="goToCategory('هدايا المناسبات')">🎁 هدايا المناسبات</div>
+  </main>
+
+  <footer>
+    <p>&copy; فلوراليزا</p>
+  </footer>
+
+  <script>
+    function goToCategory(category) {
+      alert("فتح تصنيف: " + category);
+    }
+  </script>
+</body>
+</html>

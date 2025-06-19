@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فلوراليزا - المنتجات</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-pink-50 font-sans">
+
+    <!-- رأس الصفحة -->
+    <header class="bg-pink-800 text-white p-4 text-center text-2xl font-bold">
+        🌸 فلوراليزا - متجر الزهور والهدايا
+    </header>
+
+    <!-- فلترة المنتجات -->
+    <div class="p-4 text-center">
+        <label class="font-bold mr-2">التصنيف:</label>
+        <select onchange="filterProducts(this.value)" class="p-2 rounded border">
+            <option value="all">الكل</option>
+            <option value="زهور">زهور</option>
+            <option value="شوكولاتة">شوكولاتة</option>
+            <option value="هدايا">هدايا</option>
+        </select>
+    </div>
+
+    <!-- المنتجات -->
+    <div id="product-list" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+        {% for product in products %}
+        <div class="bg-white shadow-lg rounded-lg p-4 flex items-center gap-4" data-category="{{ product.category.name }}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-24 h-24 rounded object-cover">
+            <div class="flex-1">
+                <h2 class="text-lg font-bold">{{ product.name }}</h2>
+
+                {% if product.discount_price %}
+                    <p class="text-red-600">
+                        السعر: <span class="line-through text-gray-500">{{ product.price }} ريال</span>
+                        <span class="font-bold">{{ product.discount_price }} ريال</span>
+                    </p>
+                {% else %}
+                    <p class="text-gray-700">السعر: <span class="font-bold">{{ product.price }} ريال</span></p>
+                {% endif %}
+
+                <!-- تقييم النجوم -->
+                <div class="text-yellow-500 mt-1">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= product.rating %}
+                            ★
+                        {% else %}
+                            ☆
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                <div class="mt-2 flex gap-2">
+                    <button class="px-4 py-1 bg-pink-700 hover:bg-pink-800 text-white rounded">أضف للسلة</button>
+                    <a href="{% url 'product_detail' product.id %}" class="px-4 py-1 bg-gray-200 hover:bg-gray-300 rounded">عرض التفاصيل</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- تذييل -->
+    <footer class="bg-pink-800 text-white text-center p-3 text-sm mt-8">
+        جميع الحقوق محفوظة لفلوراليزا © 2025
+    </footer>
+
+    <!-- JS للفلترة -->
+    <script>
+        function filterProducts(category) {
+            const items = document.querySelectorAll('[data-category]');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

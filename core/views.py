@@ -32,5 +32,7 @@ def user_login(request):
     return render(request, 'core/login.html', {'form': form})
 from django.http import HttpResponse
 
+from django.shortcuts import render
+
 def index(request):
-    return HttpResponse("مرحباً بك في الصفحة الرئيسية لـ Core.")
+    return render(request, 'home.html')

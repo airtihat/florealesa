@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>واجهة المتجر</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+{% include 'header.html' %}
+
+<main>
+    <section class="hero">
+        <h1>مرحبا بك في المتجر</h1>
+        <p>تصفح الفئات والمنتجات واختر ما يناسبك.</p>
+        <a href="/storefront/products/" class="btn">عرض المنتجات</a>
+    </section>
+</main>
+
+{% include 'footer.html' %}
+
+</body>
+</html>
