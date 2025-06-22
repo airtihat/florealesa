@@ -1,0 +1,51 @@
+{% load static %}
+
+<footer class="bg-gray-100 text-gray-700 mt-12 py-8 border-t border-pink-100">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <!-- معلومات عنا -->
+    <div>
+      <h3 class="text-lg font-bold mb-2 text-pink-700">عن فلوراليزا</h3>
+      <p class="text-sm leading-relaxed">
+        فلوراليزا هو متجر إلكتروني يقدم أرقى تنسيقات الزهور والهدايا المختارة بعناية.
+        نؤمن بأن الهدية تعبير صادق عن المشاعر، ونسعى لجعل كل لحظة لا تُنسى.
+      </p>
+    </div>
+
+    <!-- روابط سريعة -->
+    <div>
+      <h3 class="text-lg font-bold mb-2 text-pink-700">روابط مهمة</h3>
+      <ul class="text-sm space-y-1">
+        <li><a href="/" class="hover:underline hover:text-pink-600">الرئيسية</a></li>
+        <li><a href="/about/" class="hover:underline hover:text-pink-600">من نحن</a></li>
+        <li><a href="/contact/" class="hover:underline hover:text-pink-600">اتصل بنا</a></li>
+        <li><a href="/privacy/" class="hover:underline hover:text-pink-600">سياسة الخصوصية</a></li>
+        <li><a href="/terms/" class="hover:underline hover:text-pink-600">الشروط والأحكام</a></li>
+      </ul>
+    </div>
+
+    <!-- تواصل معنا -->
+    <div>
+      <h3 class="text-lg font-bold mb-2 text-pink-700">تواصل معنا</h3>
+      <p class="text-sm mb-1">📞 الجوال: <a href="tel:966551234567" class="hover:text-pink-600">0551234567</a></p>
+      <p class="text-sm mb-2">📧 البريد: <a href="mailto:info@florealesa.com" class="hover:text-pink-600">info@florealesa.com</a></p>
+      <div class="flex gap-3 mt-3">
+        <a href="https://www.tiktok.com" target="_blank" title="TikTok">
+          <img src="{% static 'icons/tiktok-brands.svg' %}" class="w-6 h-6 hover:opacity-70" alt="TikTok">
+        </a>
+        <a href="https://www.instagram.com" target="_blank" title="Instagram">
+          <img src="{% static 'icons/instagram-brands.svg' %}" class="w-6 h-6 hover:opacity-70" alt="Instagram">
+        </a>
+        <a href="https://wa.me/966551234567" target="_blank" title="WhatsApp">
+          <img src="{% static 'icons/whatsapp-brands.svg' %}" class="w-6 h-6 hover:opacity-70" alt="WhatsApp">
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- الحقوق -->
+  <div class="text-center text-sm text-gray-500 mt-8">
+    جميع الحقوق محفوظة © 2025 <span class="text-pink-600 font-semibold">فلوراليزا</span>
+  </div>
+</footer>

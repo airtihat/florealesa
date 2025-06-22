@@ -1,17 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 {% block title %}{{ product.name }} - Florealesa{% endblock %}
 
 {% block content %}
-<div style="display: flex; gap: 40px; padding: 30px;">
-    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 400px; height: auto; border-radius: 10px;">
-    <div>
-        <h2 style="color: #c2185b;">{{ product.name }}</h2>
-        <p>{{ product.description }}</p>
-        <h3 style="margin-top: 20px;">{{ product.price }} ر.س</h3>
-        <form action="{% url 'add_to_cart' product.id %}" method="post">
+<div class="flex flex-col md:flex-row gap-10 px-6 py-8">
+    <div class="flex-shrink-0">
+        <img src="{{ product.get_image }}" alt="{{ product.name }}"
+             class="w-full max-w-md rounded-lg shadow-md object-cover">
+    </div>
+    <div class="flex-1">
+        <h2 class="text-2xl font-bold text-pink-700 mb-4">{{ product.name }}</h2>
+        <p class="text-gray-700 leading-relaxed">{{ product.description }}</p>
+
+        {% if product.discount_price %}
+            <p class="text-gray-500 mt-4 line-through text-lg">{{ product.price }} ر.س</p>
+            <p class="text-green-600 text-xl font-semibold">{{ product.discount_price }} ر.س</p>
+        {% else %}
+            <p class="text-xl text-gray-800 mt-4 font-semibold">{{ product.price }} ر.س</p>
+        {% endif %}
+
+        <form action="{% url 'add_to_cart' product.id %}" method="post" class="mt-6">
             {% csrf_token %}
-            <button type="submit" class="btn" style="margin-top: 20px; background-color: #d81b60; color: white; padding: 10px 25px; border: none; border-radius: 5px;">
-                أضف إلى السلة
+            <button type="submit"
+                    class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded shadow">
+                أضف إلى السلة 🛒
             </button>
         </form>
     </div>

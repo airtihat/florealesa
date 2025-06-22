@@ -67,3 +67,8 @@ def remove_from_cart(request, id):
 def cart_detail(request):
     cart = Cart(request)
     return render(request, 'storefront/cart.html', {'cart_items': cart.get_items()})
+
+# عرض تفاصيل المنتج
+def product_detail_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    return render(request, 'product_detail.html', {'product': product})

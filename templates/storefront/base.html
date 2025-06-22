@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}فلوراليزا{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3208/3208707.png" type="image/png">
+    {% load static %}
+</head>
+<body class="bg-pink-50 text-gray-800 font-sans">
+
+    <!-- رأس الصفحة -->
+    <header class="bg-pink-700 text-white px-4 py-3 flex justify-between items-center">
+        <div class="text-xl font-bold">
+            🌸 فلوراليزا - متجر الزهور والهدايا
+        </div>
+
+        <div class="space-x-2 rtl:space-x-reverse">
+            {% if user.is_authenticated %}
+                <span class="font-medium">مرحباً، {{ user.username }}</span>
+                <a href="{% url 'logout' %}" class="bg-white text-pink-700 px-3 py-1 rounded hover:bg-gray-100">
+                    تسجيل الخروج
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" class="bg-white text-pink-700 px-3 py-1 rounded hover:bg-gray-100">
+                    تسجيل الدخول
+                </a>
+                <a href="{% url 'register' %}" class="bg-white text-pink-700 px-3 py-1 rounded hover:bg-gray-100">
+                    إنشاء حساب
+                </a>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="p-6">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- تذييل مخصص -->
+    {% include 'storefront/footer.html' %}
+
+</body>
+</html>

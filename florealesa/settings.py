@@ -15,7 +15,7 @@ ALLOWED_HOSTS = []
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
-    # تطبيقات Django الافتراضية
+    # تطبيقات Django الأساسية
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'core',
     'storefront',
     'orders',
+    'pages',  # ✅ تمت إضافة تطبيق الصفحات الثابتة
 ]
 
 # الطبقات الوسيطة (Middleware)
@@ -40,14 +41,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# رابط التوجيه الأساسي
+# رابط التوجيه الرئيسي
 ROOT_URLCONF = 'florealesa.urls'
 
 # إعدادات القوالب (Templates)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # مجلد القوالب العام
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # مجلد templates العام
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -60,10 +61,10 @@ TEMPLATES = [
     },
 ]
 
-# إعدادات WSGI
+# إعداد WSGI
 WSGI_APPLICATION = 'florealesa.wsgi.application'
 
-# إعداد قاعدة البيانات (SQLite لتجربة محلية)
+# قاعدة البيانات (SQLite لتجربة محلية)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -71,7 +72,7 @@ DATABASES = {
     }
 }
 
-# التحقق من كلمات المرور
+# تحقق من كلمات المرور
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -86,17 +87,18 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# إعدادات الملفات الثابتة (Static)
+# إعدادات الملفات الثابتة (CSS - JS - صور التصميم)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # المسار الذي سيتم جمع الملفات فيه
 
-# إعدادات الوسائط (صور ومنتجات)
+# إعدادات الوسائط (صور المنتجات - المرفقات)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# التوجيه بعد تسجيل الدخول والخروج
+# إعادة التوجيه بعد تسجيل الدخول والخروج
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# نوع الحقل الافتراضي
+# نوع الحقل الافتراضي للمفاتيح الأساسية
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
