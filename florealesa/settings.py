@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%p5hua%pco-0#0gu#a=ngsb4giig-392)2eo3@b_omkpl%ptrm'
 
 # وضع التصحيح (يُفعل فقط أثناء التطوير)
-DEBUG = True
+DEBUG = False
 
 # المجالات المسموح بها (تحديثها عند النشر)
 ALLOWED_HOSTS = []
