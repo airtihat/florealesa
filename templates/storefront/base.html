@@ -12,10 +12,21 @@
 
     <!-- رأس الصفحة -->
     <header class="bg-pink-700 text-white px-4 py-3 flex justify-between items-center">
+        <!-- شعار المتجر -->
         <div class="text-xl font-bold">
             🌸 فلوراليزا - متجر الزهور والهدايا
         </div>
 
+        <!-- روابط التطبيقات -->
+        <nav class="flex gap-4 text-sm font-medium">
+            <a href="/" class="hover:underline">الرئيسية</a>
+            <a href="/storefront/" class="hover:underline">المتجر</a>
+            <a href="/orders/" class="hover:underline">طلباتي</a>
+            <a href="/pages/about/" class="hover:underline">من نحن</a>
+            <a href="/pages/contact/" class="hover:underline">اتصل بنا</a>
+        </nav>
+
+        <!-- الدخول/الخروج -->
         <div class="space-x-2 rtl:space-x-reverse">
             {% if user.is_authenticated %}
                 <span class="font-medium">مرحباً، {{ user.username }}</span>
@@ -38,7 +49,7 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- تذييل مخصص -->
+    <!-- التذييل -->
     {% include 'storefront/footer.html' %}
 
 </body>

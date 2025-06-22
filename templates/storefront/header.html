@@ -1,9 +1,21 @@
-<header class="bg-pink-700 text-white px-4 py-3 flex justify-between items-center">
+<header class="bg-pink-700 text-white px-4 py-3 flex flex-col md:flex-row md:justify-between md:items-center gap-3 rtl:flex-row-reverse rtl:space-x-reverse">
+    <!-- عنوان الموقع -->
     <div class="text-xl font-bold">
         🌸 فلوراليزا - متجر الزهور والهدايا
     </div>
 
-    <div class="space-x-2 rtl:space-x-reverse">
+    <!-- روابط التطبيقات -->
+    <nav class="flex flex-wrap gap-4 text-sm md:text-base">
+        <a href="/" class="hover:underline">الرئيسية</a>
+        <a href="/storefront/" class="hover:underline">المتجر</a>
+        <a href="/orders/" class="hover:underline">الطلبات</a>
+        <a href="/pages/about/" class="hover:underline">من نحن</a>
+        <a href="/contact/" class="hover:underline">اتصل بنا</a>
+        <a href="/admin/" class="hover:underline">لوحة التحكم</a>
+    </nav>
+
+    <!-- أزرار الدخول والخروج -->
+    <div class="flex gap-2 text-sm md:text-base">
         {% if user.is_authenticated %}
             <span class="font-medium">مرحباً، {{ user.username }}</span>
             <a href="{% url 'logout' %}" class="bg-white text-pink-700 px-3 py-1 rounded hover:bg-gray-100">
@@ -19,4 +31,3 @@
         {% endif %}
     </div>
 </header>
-<!-- Compare this snippet from templates/core/base.html: -->
