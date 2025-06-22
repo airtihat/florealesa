@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-%p5hua%pco-0#0gu#a=ngsb4giig-392)2eo3@b_omkpl%ptrm
 DEBUG = False
 
 # المجالات المسموح بها (تحديثها عند النشر)
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
