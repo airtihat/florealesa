@@ -1,0 +1,24 @@
+<!-- templates/core/base.html -->
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Florealesa{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header style="padding: 1rem; background-color: #eee;">
+        <h1>Florealesa</h1>
+    </header>
+
+    <main style="padding: 2rem;">
+        {% block content %}
+        <p>مرحبًا بك!</p>
+        {% endblock %}
+    </main>
+
+    <footer style="padding: 1rem; background-color: #eee;">
+        <p>&copy; 2025 Florealesa</p>
+    </footer>
+</body>
+</html>

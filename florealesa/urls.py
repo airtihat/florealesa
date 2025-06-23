@@ -16,6 +16,10 @@ urlpatterns = [
     path('', include('core.urls')),
     path('storefront/', include('storefront.urls')),
     path('orders/', include('orders.urls')),
+    
+    # api / تطبيق فلوتر
+    path('api/', include('products.urls')),
+
 ]
 
 if settings.DEBUG:
