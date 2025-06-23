@@ -17,4 +17,8 @@ urlpatterns = [
 
     # صفحة اختبار (اختيارية)
     path('test/', views.test_view, name='test'),
+
+    # صفحة من نحن (اختيارية)
+
+    path('about/', views.about_view, name='about'),
 ]

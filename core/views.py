@@ -42,3 +42,7 @@ def login_view(request):
 # ✅ عرض صفحة اختبار
 def test_view(request):
     return render(request, 'core/test.html')
+
+# ✅ عرض صفحة من نحن
+def about_view(request):
+    return render(request, 'pages/about.html')

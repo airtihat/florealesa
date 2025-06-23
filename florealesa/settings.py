@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%p5hua%pco-0#0gu#a=ngsb4giig-392)2eo3@b_omkpl%ptrm'
 
 # وضع التصحيح (يُفعل فقط أثناء التطوير)
-DEBUG = False
+DEBUG = True
 
 # المجالات المسموح بها (تحديثها عند النشر)
 ALLOWED_HOSTS = ['*']
@@ -89,9 +89,8 @@ USE_TZ = True
 
 # إعدادات الملفات الثابتة (CSS - JS - صور التصميم)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # المسار الذي سيتم جمع الملفات فيه
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # لملفاتك الخاصة
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    # لتجميع ملفات Django Admin وغيرها
 # إعدادات الوسائط (صور المنتجات - المرفقات)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
