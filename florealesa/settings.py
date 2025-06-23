@@ -41,6 +41,13 @@ INSTALLED_APPS = [
 # الطبقات الوسيطة
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+]
+
+# في الإنتاج نضيف WhiteNoise
+if USE_RENDER:
+    MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
+
+MIDDLEWARE += [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -74,7 +81,6 @@ WSGI_APPLICATION = 'florealesa.wsgi.application'
 
 # إعداد قاعدة البيانات حسب البيئة
 if USE_RENDER:
-    # قاعدة بيانات PostgreSQL من القيم المفصلة عند النشر
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -86,7 +92,6 @@ if USE_RENDER:
         }
     }
 else:
-    # SQLite محليًا
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -109,12 +114,17 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# الملفات الثابتة
+# إعدادات static
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# ملفات الوسائط
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+if USE_RENDER:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# إعدادات media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

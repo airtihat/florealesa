@@ -13,7 +13,8 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name', 'description']
 
     def image_preview(self, obj):
-        if obj.get_image():
-            return format_html('<img src="{}" width="60" style="border-radius:4px;" />', obj.get_image())
+        image_url = obj.image.url if obj.image else obj.image_url
+        if image_url:
+            return format_html('<img src="{}" width="60" style="border-radius:4px;" />', image_url)
         return "-"
     image_preview.short_description = "الصورة"
